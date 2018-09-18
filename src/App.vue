@@ -1,17 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <vloading v-if="requesting"></vloading>
+    <button @click="requestData">发送请求</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  data() {
+    return{
+      requesting: false
+    }
+  },
+  methods: {
+    requestData() {
+      this.requesting = true;
+      setTimeout(()=>{this.requesting = false}, 3000);
+    }
   }
 }
 </script>
@@ -19,10 +26,7 @@ export default {
 <style lang="less">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+  width: 100%;
 }
 </style>
